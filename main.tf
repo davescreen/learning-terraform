@@ -48,7 +48,7 @@ module "blog_sg" {
   source = "terraform-aws-modules/security-group/aws"
 
   name        = "user-service"
-  description = "..."
+#  description = "..."
   vpc_id      = data.aws_vpc.default.id
 
     ingress_rules = ["https-443-tcp"]
