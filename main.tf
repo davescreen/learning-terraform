@@ -39,7 +39,8 @@ module "blog_sg" {
   version = "4.17.2"
 
   name        = "blog_sg"
-  vpc_id      = module.blog_vpc.public_subnets[0]
+  vpc_id      = data.aws_vpc.default.id
+#  vpc_id      = module.blog_vpc.public_subnets[0]
 
     ingress_rules = ["https-443-tcp"]
     ingress_cidr_blocks = ["0.0.0.0/0"]
