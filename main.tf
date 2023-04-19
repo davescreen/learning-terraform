@@ -31,13 +31,12 @@ resource "aws_instance" "blog" {
 }
 
 module "blog_sg" {
-  source  = "terraform-aws-modules/security-group/aws"
+  source = "terraform-aws-modules/security-group/aws"
   version = "1.19.0"
-  name    = "blog sg"
+  name    = "blog_sg"
 
   vpc_id = data.aws_vpc.default.id
 
-  #"http-80-tcp",
   ingress_rules = ["https-443-tcp"]
   ingress_cidr_blocks = ["0.0.0.0/0"]
 
