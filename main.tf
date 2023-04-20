@@ -76,7 +76,7 @@ module "blog_alb" {
 
   target_groups = [
     {
-      name_prefix      = "${var.environment.name}-blog-"
+      name_prefix      = substr("${var.environment.name}-blog-",0,6)
       backend_protocol = "HTTP"
       backend_port     = 80
       target_type      = "instance"
