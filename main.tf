@@ -61,20 +61,6 @@ module "autoscaling" {
   instance_type = var.instance_type
 }
 
-#resource "aws_instance" "blog" {
-#  ami           = data.aws_ami.app_ami.id
-#  instance_type = var.instance_type
-#
-#  # fails unless we specify, uses a subnet from default vpc
-#  subnet_id              = module.blog_vpc.public_subnets[0]
-#
-#  security_groups    = [ module.blog_sg.security_group_id ]
-#  tags = {
-#    Name = "HelloWorld"
-#  }
-#
-#}
-
 module "blog_alb" {
   source  = "terraform-aws-modules/alb/aws"
   version = "~> 8.0"
@@ -93,12 +79,6 @@ module "blog_alb" {
       backend_protocol = "HTTP"
       backend_port     = 80
       target_type      = "instance"
-      targets = {
-        my_target = {
-          target_id = aws_instance.blog.id
-          port = 80
-        }
-      }
     }
   ]
 
